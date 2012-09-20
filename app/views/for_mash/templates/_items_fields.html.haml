@@ -1,0 +1,22 @@
+= content_tag_for :tr, f.object do
+  %td
+    %p
+      = f.label :name, nil
+      = f.text_field :name, class: 'input-xlarge'
+    
+    = f.label :inputs
+    %table.table.table-condensed.table-striped.table-bordered
+      %thead
+        %tr
+          %th
+            = f.link_to_add_fields :inputs, append_to: '#template_item_new_items_inputs', class: 'btn btn-mini btn-success' do
+              %i.icon-plus-sign.icon-white
+              \ Add Input
+          %th
+      %tbody#template_new_item_new_items_inputs
+        = f.fields_for :inputs, child_index: false do |i|
+          = render partial: 'inputs_fields', locals: { f: i }
+              
+  %td.center-aligned.middle-aligned
+    = f.link_to_remove_fields :items, class: 'btn btn-mini btn-danger' do
+      %i.icon-minus-sign.icon-white

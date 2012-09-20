@@ -1,0 +1,30 @@
+.main-container
+  .page-header
+    %h1= title 'Templates'
+
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Name
+        %th Templates
+        %th.small
+          Actions
+    %tbody
+      - if @templates.any?
+        - @templates.each do |template|
+          %tr
+            %td
+              - if template.items.any?
+                = link_to template.name, "#template-#{template.id}", data: { toggle: :modal }
+                = render partial: 'preview', locals: { template: template }
+              - else
+                = template.name            
+            %td= template.entries.size
+            %td
+              = link_to 'Edit', [:edit, template], class: 'white-btn btn-mini'
+              - unless template.entries.any?
+                = link_to 'Delete', template, method: :delete, confirm: 'Are you sure?', class: 'blue-btn btn-mini'
+      - else
+        %tr
+          %td{colspan: 4}
+            %em There are no medical record entry types yet.

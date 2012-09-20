@@ -1,0 +1,28 @@
+= form_for :template, html: { class: 'form-horizontal' } do |f|
+  %fieldset
+    = application_error_messages_for(f)
+    
+    .control-group{class: ('error' if f.object.errors[:name].any?)}
+      = f.label :name, class: 'control-label'
+      .controls
+        = f.text_field :name, class: 'input-xlarge'
+    
+    .control-group{class: ('error' if f.object.errors[:items].any?)}
+      = f.label :items, class: 'control-label'
+      .controls
+        %table.table.table-condensed.table-striped.table-bordered
+          %thead
+            %tr
+              %th
+                = f.link_to_add_fields :items, class: 'btn btn-mini btn-success' do
+                  %i.icon-plus-sign.icon-white
+                  Add Part
+              %th
+          %tbody#template_items
+            = f.fields_for :items, child_index: false do |p|
+              = render partial: 'items_fields', locals: { f: p, container: f }
+        
+    .form-actions.inside-main-container
+      .pull-right
+        = f.submit nil, class: 'btn btn-info'
+        = link_to 'Cancel', :back, class: 'btn'

@@ -1,0 +1,5 @@
+.main-container
+  .page-header
+    %h1= title ['Templates', @template.name, 'Edit'], @template.name
+
+  = render partial: 'form'

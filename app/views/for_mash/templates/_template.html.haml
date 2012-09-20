@@ -1,0 +1,31 @@
+- template.items.each do |items|
+  .well.mini-well
+    %h3= item.name
+    - item.inputs.each do |input|
+      - entry = f.object.entries.find_or_initialize_by(input_id: input.id)
+      = f.fields_for :entries, entry do |e|
+        = e.hidden_field :item_id, value: item.id
+        = e.hidden_field :input_id, value: input.id
+        
+        .control-group{class: ('error' if e.object.errors.any?)}
+          = e.label :value, input.label, required: input.required?
+          - case input.type
+            - when :text_area
+              = e.text_area :value, rows: 3, placeholder: input.predefined_values.join(', '), class: 'input-xlarge'
+            - when :file_field
+              = e.file_field :file, class: 'input-xlarge'
+              - if e.object.file_cache?
+                = e.hidden_field :file_cache
+                %span.help-block
+                  A file has already been uploaded. Click
+                  = link_to 'here', carrierwave_tmp_path(e.object.file_cache)
+                  to download it.
+            - when :drop_down
+              = e.collection_select :value, input.predefined_values, :to_url, :to_s, include_blank: !input.required?
+            - when :radio_buttons
+              - input.predefined_values.each do |predefined_value|
+                = e.label "value_#{predefined_value.to_url}", class: input_label_css_class(input) do
+                  = e.send input.type.singularize, :value, predefined_value.to_url
+                  = predefined_value
+            - else
+              = e.send input.type, :value, placeholder: input.predefined_values.join(', '), class: 'input-xlarge'
