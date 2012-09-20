@@ -6,7 +6,7 @@
     
     %p
       = f.label :type
-      = f.collection_select :type, Input::TYPES, :to_s, :titleize
+      = f.collection_select :type, Input::TYPES, :to_s, :to_s
     %p
       = f.label :predefined_values
       = f.text_field :predefined_values, value: f.object.predefined_values.join(', '), placeholder: 'Value 1, Value 2, Value 3, ...', class: 'input-xlarge'
