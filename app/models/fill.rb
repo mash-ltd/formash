@@ -1,9 +1,10 @@
-class Mre
+class Fill
   include Mongoid::Document
   include Mongoid::Timestamps::Created
 
   # Relations
   belongs_to :template
+  has_many :entries
   embeds_many :entries, cascade_callbacks: true
   accepts_nested_attributes_for :entries
 
@@ -15,8 +16,7 @@ class Mre
     @label ||= "#{self.template.name} (#{I18n.l self.created_at, format: :long})"
   end
 
-protected
-    
+protected  
   def flatten_nested_errors
     if self.errors[:entries].any?
       self.errors[:entries].clear

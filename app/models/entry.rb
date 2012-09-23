@@ -6,7 +6,7 @@ class Entry
   field :value
   
   # Plugins
-  mount_uploader :file, EntryFileUploader
+  # mount_uploader :file, EntryFileUploader
 
   # Relations
   embedded_in :fill

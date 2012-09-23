@@ -17,7 +17,7 @@ class Template
   scope :list, asc(:name)
   
   # Callbacks
-  after_validation :flatten_nested_errors
+  # after_validation :flatten_nested_errors
   before_destroy -> { self.fills.empty? }
 
 # protected  

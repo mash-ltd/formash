@@ -13,6 +13,7 @@ gem 'carrierwave'
 gem 'coffee-filter'
 gem 'dotiw'
 gem 'dynamic_form'
+gem 'mini_magick'
 
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or

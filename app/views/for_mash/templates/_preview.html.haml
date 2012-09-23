@@ -1,7 +1,0 @@
-.modal.hide.fade{id: "template-#{template.id}"}
-  .modal-header
-    = link_to '&times;'.html_safe, '#', class: 'close', data: { dismiss: :modal }
-    %h3 Preview
-  .modal-body
-    = form_for Entry.new, url: '#' do |f|
-      = render partial: template, locals: { f: f }

@@ -22,6 +22,10 @@ module ForMash
       end
     end
 
+    def show
+      @template = Template.find(params[:id])
+    end
+    
     def edit
       @template = Template.find(params[:id])
     end
@@ -46,6 +50,7 @@ module ForMash
         format.html { redirect_to [:templates], notice: 'Template has been deleted successfully.' }
       end
     end
+
     
   private
     

@@ -15,14 +15,13 @@
           %tr
             %td
               - if template.items.any?
-                = link_to template.name, "#template-#{template.id}", data: { toggle: :modal }
-                = render partial: 'preview', locals: { template: template }
+                = link_to template.name, template, data: { toggle: :modal }
               - else
-                = template.name            
-            %td= template.entries.size
+                = template.name
+            %td= template.fills.size
             %td
               = link_to 'Edit', [:edit, template], class: 'white-btn btn-mini'
-              - unless template.entries.any?
+              - unless template.fills.any?
                 = link_to 'Delete', template, method: :delete, confirm: 'Are you sure?', class: 'blue-btn btn-mini'
       - else
         %tr

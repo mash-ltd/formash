@@ -11,5 +11,5 @@ class Item
   accepts_nested_attributes_for :inputs, allow_destroy: true
   
   # Validations
-  validates :item_id, :name, presence: true
+  validates :name, presence: true
 end
