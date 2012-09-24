@@ -1,4 +1,0 @@
-for_mash  /forms ForMash::Engine
-
-Routes for ForMash::Engine:
-root  / for_mash/templates#index
