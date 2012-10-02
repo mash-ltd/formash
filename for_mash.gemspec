@@ -7,8 +7,8 @@ require "for_mash/version"
 Gem::Specification.new do |s|
   s.name        = "for_mash"
   s.version     = ForMash::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
+  s.authors     = ['AlSayed Gamal']
+  s.email       = ['elsayed.gamal@mashsolvents.com']
   s.homepage    = "TODO"
   s.summary     = "TODO: Summary of ForMash."
   s.description = "TODO: Description of ForMash."
