@@ -7,6 +7,7 @@ class Template
   field :name 
   
   # Relations
+  belongs_to :creator, polymorphic: true
   has_many :items, dependent: :destroy
   has_many :fills, dependent: :destroy
   accepts_nested_attributes_for :items, allow_destroy: true
