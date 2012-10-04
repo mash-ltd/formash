@@ -18,7 +18,7 @@
                   %i.icon-plus-sign.icon-white
                   Add Item
               %th
-          %tbody#template_items
+          %tbody#for_mash_template_items
             = f.fields_for :items, child_index: false do |p|
               = render partial: 'items_fields', locals: { f: p, container: f }
         

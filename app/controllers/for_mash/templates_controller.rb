@@ -11,7 +11,7 @@ module ForMash
     end
 
     def create
-      @template = Template.new(params[:template])
+      @template = Template.new(params[:for_mash_template])
       
       respond_to do |format|
         if @template.save
@@ -34,8 +34,8 @@ module ForMash
       @template = Template.find(params[:id])
 
       respond_to do |format|
-        if @template.update_attributes(params[:template])
           format.html { redirect_to @template, notice: 'Template has been edited successfully.' }
+        if @template.update_attributes(params[:for_mash_template])
         else
           format.html { render action: :edit }
         end
