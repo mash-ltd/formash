@@ -1,5 +1,8 @@
 module ForMash
   class TemplatesController < ApplicationController
+    before_filter :authenticate_entity!
+    before_filter :is_template_creator?, only: [:edit, :update, :destroy]
+    before_filter :can_create_templates?, only: [:new, :create]
     before_filter :prepare_statistics
     
     def index
@@ -12,6 +15,7 @@ module ForMash
 
     def create
       @template = Template.new(params[:for_mash_template])
+      @template.creator = current_entity
       
       respond_to do |format|
         if @template.save
@@ -57,6 +61,14 @@ module ForMash
     def prepare_statistics
       @count = Template.count
       @last_created = Template.desc(:created_at).first.try(:created_at)
+    end
+
+    def can_create_templates?
+      redirect_to root_path, notice: "You don't have the privilige to create a form" if current_entity.try(:can_create_forms?)
+    end
+
+    def is_template_creator?
+      redirect_to root_path, notice: 'You are not the creator of this form' if @template.creator != current_entity
     end
   end
 end
