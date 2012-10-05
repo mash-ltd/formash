@@ -20,6 +20,7 @@
                 = template.name
             %td= template.fills.size
             %td
+              = link_to 'Fills', for_mash.template_fills_path(template), class: 'white-btn btn-mini'
               = link_to 'Edit', for_mash.edit_template_path(template), class: 'white-btn btn-mini'
               = link_to 'Delete', for_mash.template_path(template), method: :delete, confirm: 'Are you sure?', class: 'blue-btn btn-mini'
       - else
