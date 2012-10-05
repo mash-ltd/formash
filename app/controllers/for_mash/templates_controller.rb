@@ -3,7 +3,7 @@ module ForMash
     before_filter :authenticate_entity!
     before_filter :prepare_template, only: [:show, :edit, :update, :destroy]
     before_filter :is_template_creator?, only: [:edit, :update, :destroy]
-    before_filter :can_create_templates?, only: [:new, :create]
+    before_filter :can_create_templates?, only: [:index, :new, :create]
     before_filter :prepare_statistics
     
     def index
