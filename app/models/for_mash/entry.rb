@@ -15,7 +15,7 @@ module ForMash
 
     # Validations
     validates :input_id, presence: true
-    validates :value, inclusion: { in: ->(entry) { entry.predefined_values.map(&:to_url) } }, if: -> { self.value.present? && self.required? && [:drop_down, :radio_buttons].include?(self.type)  }
+    validates :value, inclusion: { in: ->(entry) { entry.predefined_values.map(&:downcase) } }, if: -> { self.value.present? && self.required? && [:drop_down, :radio_buttons].include?(self.type)  }
     validates :value, numericality: true, if: -> { self.type == :number_field }
     validates :value, presence: true, if: -> { self.required? }, unless: -> { self.type == :file_field }
     validates :file, presence: true, if: -> { self.required? && self.type == :file_field }
