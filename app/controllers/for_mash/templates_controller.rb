@@ -7,7 +7,7 @@ module ForMash
     before_filter :prepare_statistics
     
     def index
-      @templates = Template.all
+      @templates = Template.created_by(current_entity)
     end
 
     def new

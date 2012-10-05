@@ -18,6 +18,7 @@ module ForMash
 
     # Scopes
     scope :list, asc(:name)
+    scope :created_by, ->(creator) { where(creator_id: creator.id, creator_type: creator.class.to_s) }
 
     # Callbacks
     # after_validation :flatten_nested_errors
