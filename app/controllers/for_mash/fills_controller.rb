@@ -3,6 +3,7 @@ module ForMash
     before_filter :authenticate_entity!
     before_filter :prepare_template, only: [:index, :create]
     before_filter :prepare_fill, only: :show
+    before_filter :is_template_creator?, only: :create
 
     def index
     end
@@ -27,6 +28,10 @@ module ForMash
 
     def prepare_fill
       @fill = Fill.find(params[:id])
+    end
+
+    def is_template_creator?
+      redirect_to root_path, notice: 'You cannot apply on your own templates' if current_entity == @template.creator
     end
   end
 end
