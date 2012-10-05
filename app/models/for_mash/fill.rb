@@ -5,7 +5,6 @@ module ForMash
 
     # Relations
     belongs_to :template, class_name: 'ForMash::Template'
-    has_many :entries, class_name: 'ForMash::Entry'
     embeds_many :entries, cascade_callbacks: true, class_name: 'ForMash::Entry'
     accepts_nested_attributes_for :entries
 
