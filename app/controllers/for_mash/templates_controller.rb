@@ -65,7 +65,7 @@ module ForMash
     end
 
     def can_create_templates?
-      redirect_to root_path, notice: "You don't have the privilige to create a form" if current_entity.try(:can_create_forms?)
+      redirect_to root_path, notice: "You don't have the privilige to create a form" unless current_entity.try(:can_create_forms?)
     end
 
     def is_template_creator?
