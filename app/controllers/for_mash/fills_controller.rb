@@ -4,6 +4,7 @@ module ForMash
     before_filter :prepare_template, only: [:index, :create]
     before_filter :prepare_fill, only: :show
     before_filter :is_template_creator?, only: :create
+    before_filter :is_authorized_to_access?, only: [:show, :index]
 
     def index
     end
@@ -32,6 +33,10 @@ module ForMash
 
     def is_template_creator?
       redirect_to root_path, notice: 'You cannot apply on your own templates' if current_entity == @template.creator
+    end
+
+    def is_authorized_to_access?
+      redirect_to root_path, notice: 'You do not have access to view such data' unless current_entity == @fill.template.creator
     end
   end
 end
