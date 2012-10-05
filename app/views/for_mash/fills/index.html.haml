@@ -13,8 +13,8 @@
       - if @template.fills.any?
         - @template.fills.each do |fill|
           %tr
-            %td= fill.created_at
             %td= link_to fill.creator.name, fill.creator
+            %td= fill.created_at
             %td
               = link_to 'View', for_mash.fill_path(fill), class: 'white-btn btn-mini'
       - else
