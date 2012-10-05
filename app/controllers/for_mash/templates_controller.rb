@@ -1,6 +1,7 @@
 module ForMash
   class TemplatesController < ApplicationController
     before_filter :authenticate_entity!
+    before_filter :prepare_template, only: [:show, :edit, :update, :destroy]
     before_filter :is_template_creator?, only: [:edit, :update, :destroy]
     before_filter :can_create_templates?, only: [:new, :create]
     before_filter :prepare_statistics
@@ -27,16 +28,12 @@ module ForMash
     end
 
     def show
-      @template = Template.find(params[:id])
     end
     
     def edit
-      @template = Template.find(params[:id])
     end
 
     def update
-      @template = Template.find(params[:id])
-
       respond_to do |format|
           format.html { redirect_to @template, notice: 'Template has been edited successfully.' }
         if @template.update_attributes(params[:for_mash_template])
@@ -47,7 +44,6 @@ module ForMash
     end
 
     def destroy
-      @template = Template.find(params[:id])
       @template.destroy
       
       respond_to do |format|
@@ -58,6 +54,10 @@ module ForMash
     
   private
     
+    def prepare_template
+      @template = Template.find(params[:id])
+    end
+
     def prepare_statistics
       @count = Template.count
       @last_created = Template.desc(:created_at).first.try(:created_at)
