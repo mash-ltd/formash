@@ -9,8 +9,8 @@ module ForMash
 
     # Relations
     belongs_to :creator, polymorphic: true
-    has_many :items, dependent: :destroy, class_name: 'ForMash::Item'
-    has_many :fills, dependent: :destroy, autosave: true, class_name: 'ForMash::Fill'
+    has_many :items, class_name: 'ForMash::Item'
+    has_many :fills, autosave: true, class_name: 'ForMash::Fill'
     accepts_nested_attributes_for :items, allow_destroy: true
 
     # Validations
@@ -22,7 +22,6 @@ module ForMash
 
     # Callbacks
     # after_validation :flatten_nested_errors
-    before_destroy -> { self.fills.empty? }
 
   # protected
   #   def flatten_nested_errors

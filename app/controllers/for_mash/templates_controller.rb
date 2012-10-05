@@ -45,7 +45,7 @@ module ForMash
     end
 
     def destroy
-      @template.destroy
+      @template.delete
       
       respond_to do |format|
         format.html { redirect_to for_mash.templates_path, notice: 'Template has been deleted successfully.' }
