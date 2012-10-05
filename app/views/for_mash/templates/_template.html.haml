@@ -21,11 +21,11 @@
                   = link_to 'here', carrierwave_tmp_path(e.object.file_cache)
                   to download it.
             - when :drop_down
-              = e.collection_select :value, input.predefined_values, :to_url, :to_s, include_blank: !input.required?
+              = e.collection_select :value, input.predefined_values, :downcase, :to_s, include_blank: !input.required?
             - when :radio_buttons
               - input.predefined_values.each do |predefined_value|
-                = e.label "value_#{predefined_value.to_url}", class: input_label_css_class(input) do
-                  = e.send input.type.singularize, :value, predefined_value.to_url
+                = e.label "value_#{predefined_value.downcase}", class: input_label_css_class(input) do
+                  = e.send input.type.to_s.singularize, :value, predefined_value.downcase
                   = predefined_value
             - else
               = e.send input.type, :value, placeholder: input.predefined_values.join(', '), class: 'input-xlarge'

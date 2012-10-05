@@ -98,5 +98,9 @@ module ForMash
     def named_route(records, inflection)
       send(:build_named_route_call, records, inflection, routing_type: :path)
     end
+
+    def input_label_css_class(input)
+      ''
+    end
   end
 end
