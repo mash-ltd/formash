@@ -6,6 +6,6 @@ end
 
 module ForMash
   class Engine < ::Rails::Engine
-    isolate_namespace ForMash
+    self.routes.default_scope = { :module => 'for_mash' }
   end
 end

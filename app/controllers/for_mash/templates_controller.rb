@@ -20,7 +20,7 @@ module ForMash
       
       respond_to do |format|
         if @template.save
-          format.html { redirect_to @template, notice: 'Template has been added successfully.' }
+          format.html { redirect_to for_mash.template_path(@template), notice: 'Template has been added successfully.' }
         else
           format.html { render action: :new }
         end
@@ -35,8 +35,8 @@ module ForMash
 
     def update
       respond_to do |format|
-          format.html { redirect_to @template, notice: 'Template has been edited successfully.' }
         if @template.update_attributes(params[:for_mash_template])
+          format.html { redirect_to for_mash.template_path(@template), notice: 'Template has been edited successfully.' }
         else
           format.html { render action: :edit }
         end
@@ -47,7 +47,7 @@ module ForMash
       @template.destroy
       
       respond_to do |format|
-        format.html { redirect_to [:templates], notice: 'Template has been deleted successfully.' }
+        format.html { redirect_to for_mash.templates_path, notice: 'Template has been deleted successfully.' }
       end
     end
 

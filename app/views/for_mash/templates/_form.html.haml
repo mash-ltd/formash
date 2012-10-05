@@ -1,4 +1,4 @@
-= form_for @template, html: { class: 'form-horizontal' } do |f|
+= form_for @template, url: (@template.new_record? ? for_mash.templates_path : for_mash.template_path(@template)), html: { class: 'form-horizontal' } do |f|
   %fieldset
     = application_error_messages_for(f)
     

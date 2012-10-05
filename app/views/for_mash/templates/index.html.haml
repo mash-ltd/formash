@@ -15,16 +15,16 @@
           %tr
             %td
               - if template.items.any?
-                = link_to template.name, template, data: { toggle: :modal }
+                = link_to template.name, for_mash.template_path(template), data: { toggle: :modal }
               - else
                 = template.name
             %td= template.fills.size
             %td
-              = link_to 'Edit', [:edit, template], class: 'white-btn btn-mini'
+              = link_to 'Edit', for_mash.edit_template_path(template), class: 'white-btn btn-mini'
               - unless template.fills.any?
-                = link_to 'Delete', template, method: :delete, confirm: 'Are you sure?', class: 'blue-btn btn-mini'
+                = link_to 'Delete', for_mash.template_path(template), method: :delete, confirm: 'Are you sure?', class: 'blue-btn btn-mini'
       - else
         %tr
           %td{colspan: 4}
             %em There are no templates yet.
-  = link_to "Add template", [:new, :template]
+  = link_to "Add template", for_mash.new_template_path
