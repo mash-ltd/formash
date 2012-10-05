@@ -6,9 +6,6 @@ module ForMash
     field :input_id, type: Moped::BSON::ObjectId
     field :value
 
-    # Plugins
-    # mount_uploader :file, EntryFileUploader
-
     # Relations
     embedded_in :fill, class_name: 'ForMash::Fill'
     belongs_to :item, class_name: 'ForMash::Item', inverse_of: nil

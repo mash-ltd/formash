@@ -10,7 +10,14 @@
       - @fill.entries.each do |entry|
         %tr
           %td= entry.input.label
-          %td= entry.value
+          %td
+            - if entry.input.type == :file_field
+              %ul
+                - @fill.attachments.each do |attachment|
+                  %li= link_to File.basename(attachment.file.to_s), attachment.file.url
+
+            - else
+              = entry.value
 
   = link_to "Back to fills", for_mash.template_fills_path(@fill.template)
 

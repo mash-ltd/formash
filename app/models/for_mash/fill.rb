@@ -8,6 +8,8 @@ module ForMash
     belongs_to :template, class_name: 'ForMash::Template'
     embeds_many :entries, cascade_callbacks: true, class_name: 'ForMash::Entry'
     accepts_nested_attributes_for :entries
+    has_many :attachments, class_name: 'ForMash::Attachment'
+    accepts_nested_attributes_for :attachments
 
     # Callbacks
     after_validation :flatten_nested_errors

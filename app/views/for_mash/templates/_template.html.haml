@@ -13,13 +13,10 @@
             - when :text_area
               = e.text_area :value, rows: 3, placeholder: input.predefined_values.join(', '), class: 'input-xlarge'
             - when :file_field
-              = e.file_field :file, class: 'input-xlarge'
-              - if e.object.file_cache?
-                = e.hidden_field :file_cache
-                %span.help-block
-                  A file has already been uploaded. Click
-                  = link_to 'here', carrierwave_tmp_path(e.object.file_cache)
-                  to download it.
+              = f.fields_for :attachments do |attachment_form|
+                = attachment_form.file_field :file, class: 'input-xlarge'
+                = attachment_form.link_to_remove 'Remove this attachment'
+              = f.link_to_add 'Add attachment', :attachments
             - when :drop_down
               = e.collection_select :value, input.predefined_values, :downcase, :to_s, include_blank: !input.required?
             - when :radio_buttons

@@ -14,3 +14,4 @@
 //= require jquery_ujs
 //= require_tree .
 //= require link_to_fields
+//= require jquery_nested_form
