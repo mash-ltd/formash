@@ -1,0 +1,16 @@
+.main-container
+  .page-header
+    %h1= title 'View Fill'
+
+  %table.table.table-striped
+    %thead
+      %th Field
+      %th Value
+    %tbody
+      - @fill.entries.each do |entry|
+        %tr
+          %td= entry.input.label
+          %td= entry.value
+
+  = link_to "Back to fills", for_mash.template_fills_path(@fill.template)
+

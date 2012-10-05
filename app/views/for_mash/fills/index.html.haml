@@ -1,0 +1,24 @@
+.main-container
+  .page-header
+    %h1= title "#{@template.name} Entries"
+
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Submitted By
+        %th Submitted At
+        %th.small
+          Actions
+    %tbody
+      - if @template.fills.any?
+        - @template.fills.each do |fill|
+          %tr
+            %td= fill.created_at
+            %td= link_to fill.creator.name, fill.creator
+            %td
+              = link_to 'View', for_mash.fill_path(fill), class: 'white-btn btn-mini'
+      - else
+        %tr
+          %td{colspan: 4}
+            %em There are no fills for this template yet.
+  = link_to "Back to template", for_mash.template_path(@template)
