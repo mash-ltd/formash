@@ -4,6 +4,7 @@ module ForMash
     include Mongoid::Timestamps::Created
 
     # Relations
+    belongs_to :creator, polymorphic: true
     belongs_to :template, class_name: 'ForMash::Template'
     embeds_many :entries, cascade_callbacks: true, class_name: 'ForMash::Entry'
     accepts_nested_attributes_for :entries

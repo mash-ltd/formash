@@ -10,7 +10,7 @@ module ForMash
     # Relations
     belongs_to :creator, polymorphic: true
     has_many :items, dependent: :destroy, class_name: 'ForMash::Item'
-    has_many :fills, dependent: :destroy, class_name: 'ForMash::Fill'
+    has_many :fills, dependent: :destroy, autosave: true, class_name: 'ForMash::Fill'
     accepts_nested_attributes_for :items, allow_destroy: true
 
     # Validations

@@ -28,6 +28,7 @@ module ForMash
     end
 
     def show
+      @fill = ForMash::Fill.new
     end
     
     def edit

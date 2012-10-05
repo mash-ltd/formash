@@ -1,4 +1,6 @@
 ForMash::Engine.routes.draw do
-  resources :templates
+  resources :templates do
+    resources :fills, only: [:create]
+  end
   root to: "templates#index"
 end

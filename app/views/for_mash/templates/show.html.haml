@@ -1,3 +1,7 @@
-= form_for ForMash::Fill.new, url: '#' do |f|
-  = render partial: "template", locals: { f: f, template: @template }
+= form_for @fill, url: for_mash.template_fills_path(@template) do |f|
+  = f.error_messages header_tag: 'h3', message: nil, class: 'alert alert-error'
+  = render partial: 'for_mash/templates/template', locals: { f: f, template: @template }
+  .actions
+    = f.submit 'Save', class: 'btn primary-btn'
+
 = link_to "templates", :back
