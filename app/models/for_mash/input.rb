@@ -3,7 +3,7 @@ module ForMash
     include Mongoid::Document
 
     # Constants
-    TYPES = %w(text_field number_field text_area file_field drop_down radio_buttons)
+    TYPES = %w(text_field number_field text_area file_field drop_down radio_buttons youtube_video)
 
     # Fields
     field :label

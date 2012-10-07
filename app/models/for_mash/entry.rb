@@ -1,5 +1,8 @@
 module ForMash
   class Entry
+    # Regex copied from http://stackoverflow.com/questions/2964678/jquery-youtube-url-validation-with-regex/10315969#10315969
+    YOUTUBE_REGEX = %r#\A(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?(?=.*v=((?:\w|-){11}))(?:\S+)?\Z#
+
     include Mongoid::Document
 
     # Fields
@@ -14,6 +17,7 @@ module ForMash
     validates :input_id, presence: true
     validates :value, inclusion: { in: ->(entry) { entry.predefined_values.map(&:downcase) } }, if: -> { self.value.present? && self.required? && [:drop_down, :radio_buttons].include?(self.type)  }
     validates :value, numericality: true, if: -> { self.type == :number_field }
+    validates :value, format: { with: YOUTUBE_REGEX }, if: -> { self.type == :youtube_video }
     validates :value, presence: true, if: -> { self.required? }, unless: -> { self.type == :file_field }
     validates :file, presence: true, if: -> { self.required? && self.type == :file_field }
 

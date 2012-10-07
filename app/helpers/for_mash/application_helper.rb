@@ -102,5 +102,11 @@ module ForMash
     def input_label_css_class(input)
       ''
     end
+
+    def extract_youtube_vid(url)
+      results = url.scan(Entry::YOUTUBE_REGEX)
+      raise "Failed to extract video id from this URL: #{url}" if results.empty?
+      results.first[0]
+    end
   end
 end
