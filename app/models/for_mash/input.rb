@@ -3,7 +3,7 @@ module ForMash
     include Mongoid::Document
 
     # Constants
-    TYPES = %w(text_field number_field text_area file_field drop_down radio_buttons).map(&:to_sym)
+    TYPES = %w(text_field number_field text_area file_field drop_down radio_buttons)
 
     # Fields
     field :label
@@ -16,7 +16,7 @@ module ForMash
 
     # Validations
     validates :label, presence: true
-    validates :type, inclusion: { in: TYPES }
+    validates :type, inclusion: { in: TYPES.map(&:to_sym) }
 
     # Overrides
     def predefined_values=(value)
