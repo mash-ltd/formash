@@ -37,7 +37,7 @@ module ForMash
 
     def is_authorized_to_access?
       template = @template || @fill.template
-      redirect_to root_path, notice: 'You do not have access to view such data' unless current_entity == template.creator
+      redirect_to root_path, notice: 'You do not have access to view such data' unless (current_entity == template.creator || current_entity == @fill.creator)
     end
   end
 end
