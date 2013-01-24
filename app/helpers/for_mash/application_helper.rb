@@ -1,24 +1,5 @@
 module ForMash
   module ApplicationHelper
-    def flash_messages
-      %w(notice alert).map do |flash_message_type|
-        flash_message_type = flash_message_type.to_sym
-        %Q{
-          <div class="alert fade in #{flash_message_type_css_class(flash_message_type)}">
-            <a href="#" class="close" data-dismiss="alert">&times;</a>
-            #{flash[flash_message_type]}
-          </div>
-        } if flash[flash_message_type]
-      end.join.html_safe
-    end
-
-    def flash_message_type_css_class(flash_message_type)
-      case flash_message_type
-      when :notice ; 'alert-success'
-      when :alert  ; 'alert-error'
-      end
-    end
-    
     def application_error_messages_for(form)
       form.error_messages header_message: nil, class: 'alert alert-error'
     end
